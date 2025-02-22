@@ -40,7 +40,14 @@ const userSchema = new mongoose.Schema({
     },
     lastLogin: {
         type: Date
-    }
+    },
+    image: {
+        type: String,
+    },
+    accounts: [{
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Account'
+    }]
 }, {
     timestamps: true
 });
