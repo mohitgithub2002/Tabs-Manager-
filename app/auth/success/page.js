@@ -1,6 +1,7 @@
 'use client';
 
 import { useSession } from 'next-auth/react';
+import Link from 'next/link';
 import { useEffect } from 'react';
 
 export default function AuthSuccess() {
@@ -8,16 +9,15 @@ export default function AuthSuccess() {
 
     useEffect(() => {
         if (status === 'authenticated' && session) {
-            const extensionUrl = new URL('chrome-extension://hddnkoipeenegfoeaoibdmnaalmgkpip/toby.html');
-            const params = new URLSearchParams({
+            const extensionId = `fahhijlogchblpjijfecepmmobadfaol`;
+            const data = {
                 'user-id': session.user.id,
-                'refresh-token': session.user.accessToken,
+                'access-token': session.user.accessToken,
                 'name': session.user.name
+            };
+            chrome.runtime.sendMessage(extensionId, { action: 'store_token', data }, (response) => {
+                console.log('Response from extension:', response);
             });
-            console.log(session);
-            console.log(params.toString());
-            extensionUrl.search = params.toString();
-            // window.location.href = extensionUrl.toString();
         }
     }, [session, status]);
 
