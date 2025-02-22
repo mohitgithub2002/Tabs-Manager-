@@ -9,7 +9,7 @@ export async function POST(request) {
         const body = await request.json();
         
         // Validate required fields
-        if (!body.id || !body.name) {
+        if (!body.id || !body.name || !body.userId) {
             return NextResponse.json(
                 { error: 'Missing required fields' },
                 { status: 400 }
@@ -19,6 +19,7 @@ export async function POST(request) {
         // Create new collection
         const collection = await Collection.create({
             id: body.id,
+            userId: body.userId,
             name: body.name,
             sessions: body.sessions || []
         });
@@ -26,10 +27,9 @@ export async function POST(request) {
         return NextResponse.json(collection, { status: 201 });
         
     } catch (error) {
-        // Handle duplicate ID error
         if (error.code === 11000) {
             return NextResponse.json(
-                { error: 'Collection ID already exists' },
+                { error: 'Collection ID already exists for this user' },
                 { status: 409 }
             );
         }

@@ -39,6 +39,10 @@ const collectionSchema = new mongoose.Schema({
         required: true,
         unique: true
     },
+    userId: {
+        type: String,
+        required: true
+    },
     name: {
         type: String,
         required: true
@@ -50,6 +54,9 @@ const collectionSchema = new mongoose.Schema({
 }, {
     timestamps: true
 });
+
+// Create compound index for userId and id
+collectionSchema.index({ userId: 1, id: 1 }, { unique: true });
 
 const Collection = mongoose.model('Collection', collectionSchema);
 

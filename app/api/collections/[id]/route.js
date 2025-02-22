@@ -2,12 +2,21 @@ import { NextResponse } from 'next/server';
 import dbConnect from '@/lib/db';
 import Collection from '@/models/collection';
 
-export async function GET( { params }) {
+export async function GET(request, { params }) {
     try {
         await dbConnect();
         
         const { id } = params;
-        const collection = await Collection.findOne({ id: id });
+        const userId = request.headers.get('user-id'); // Assume user-id is passed in headers
+
+        if (!userId) {
+            return NextResponse.json(
+                { error: 'User ID is required' },
+                { status: 401 }
+            );
+        }
+
+        const collection = await Collection.findOne({ id, userId });
         
         if (!collection) {
             return NextResponse.json(
@@ -35,10 +44,17 @@ export async function POST(request, { params }) {
         await dbConnect();
         
         const { id } = params;
+        const userId = request.headers.get('user-id');
         const sessionData = await request.json();
 
-        // Find collection and update with new session
-        const collection = await Collection.findOne({ id: id });
+        if (!userId) {
+            return NextResponse.json(
+                { error: 'User ID is required' },
+                { status: 401 }
+            );
+        }
+
+        const collection = await Collection.findOne({ id, userId });
         
         if (!collection) {
             return NextResponse.json(

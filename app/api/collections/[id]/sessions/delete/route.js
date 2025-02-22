@@ -7,7 +7,15 @@ export async function POST(request, { params }) {
         await dbConnect();
         
         const { id } = params;
+        const userId = request.headers.get('user-id');
         const { timestamp } = await request.json();
+
+        if (!userId) {
+            return NextResponse.json(
+                { error: 'User ID is required' },
+                { status: 401 }
+            );
+        }
 
         if (!timestamp) {
             return NextResponse.json(
@@ -16,7 +24,7 @@ export async function POST(request, { params }) {
             );
         }
 
-        const collection = await Collection.findOne({ id: id });
+        const collection = await Collection.findOne({ id, userId });
         
         if (!collection) {
             return NextResponse.json(

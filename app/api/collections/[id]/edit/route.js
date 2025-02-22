@@ -7,9 +7,17 @@ export async function POST(request, { params }) {
         await dbConnect();
         
         const { id } = params;
+        const userId = request.headers.get('user-id');
         const { action, newName } = await request.json();
 
-        const collection = await Collection.findOne({ id: id });
+        if (!userId) {
+            return NextResponse.json(
+                { error: 'User ID is required' },
+                { status: 401 }
+            );
+        }
+
+        const collection = await Collection.findOne({ id, userId });
         
         if (!collection) {
             return NextResponse.json(
