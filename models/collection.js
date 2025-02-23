@@ -58,6 +58,6 @@ const collectionSchema = new mongoose.Schema({
 // Create compound index for userId and id
 collectionSchema.index({ userId: 1, id: 1 }, { unique: true });
 
-const Collection = mongoose.model('Collection', collectionSchema);
+const Collection = mongoose.models.Collection || mongoose.model('Collection', collectionSchema);
 
 module.exports = Collection;
