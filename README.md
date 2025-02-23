@@ -1,36 +1,167 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Tabs Manager Backend Service
 
-## Getting Started
+A robust Next.js-powered backend service that provides the core functionality for the Toby browser extension clone. This service handles tab collection management, user authentication, and session storage with a focus on security and scalability.
 
-First, run the development server:
+## 🚀 Features
 
+- **Authentication & Authorization**
+  - Google OAuth 2.0 integration
+  - Secure session management
+  - Role-based access control
+
+- **Collection Management**
+  - Create and organize tab collections
+  - Session-based tab grouping
+  - Bulk operations support
+  - Real-time updates
+
+- **Data Management**
+  - MongoDB integration
+  - Efficient data querying
+  - Data validation and sanitization
+  - Automatic backup support
+
+- **Security**
+  - CORS protection
+  - Rate limiting
+  - Input validation
+  - Data encryption
+
+## 📋 Prerequisites
+
+Before you begin, ensure you have the following installed:
+- Node.js (v18.0.0 or higher)
+- npm (v8.0.0 or higher)
+- MongoDB (v5.0 or higher)
+
+## 🛠️ Installation
+
+1. Clone the repository
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+git clone https://github.com/mohitgithub2002/tabs-manager.git
+cd tabs-manager
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+2. Install dependencies
+```bash
+npm install
+```
 
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
+3. Configure environment variables by creating a `.env` file:
+```env
+# Authentication
+GOOGLE_ID=your_google_client_id
+GOOGLE_SECRET=your_google_client_secret
+NEXTAUTH_SECRET=your_random_string
+NEXTAUTH_URL=http://localhost:3000
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+# Database
+MONGODB_URI=your_mongodb_connection_string
 
-## Learn More
+# API Configuration
+API_RATE_LIMIT=100
+API_RATE_WINDOW=900000
+CORS_ORIGIN=chrome-extension://your-extension-id
 
-To learn more about Next.js, take a look at the following resources:
+# Environment
+NODE_ENV=development
+```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## 🚦 Development
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+Start the development server:
+```bash
+npm run dev
+```
 
-## Deploy on Vercel
+For production build:
+```bash
+npm run build
+npm start
+```
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+### Available Scripts
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+- `npm run dev` - Starts development server
+- `npm run build` - Creates production build
+- `npm start` - Runs production server
+- `npm test` - Runs test suite
+- `npm run lint` - Runs ESLint
+- `npm run format` - Formats code using Prettier
+
+
+## 📚 API Documentation
+
+Comprehensive API documentation is available in the [API Documentation](./docs/api.md) file. The API includes:
+
+- Collection Management
+- Session Handling
+- User Authentication
+- Tab Organization
+
+## 🏗️ Project Structure
+
+```
+backend/
+├── app/              # Application logic
+├── components/       # Reusable components
+├── docs/            # Documentation
+├── lib/             # Utility functions
+├── middleware/      # Custom middleware
+├── models/          # Database models
+├── public/          # Static files
+
+```
+
+## 🔒 Security
+
+- All endpoints require authentication
+- Data is validated using mongoose schemas
+- CORS is configured for extension-only access
+- Rate limiting prevents abuse
+- Input sanitization prevents injection attacks
+
+## 🚀 Deployment
+
+### Production Deployment
+
+1. Build the application:
+```bash
+npm run build
+```
+
+2. Set production environment variables
+3. Start the server:
+```bash
+npm start
+```
+
+## 🤝 Contributing
+
+1. Fork the repository
+2. Create your feature branch (`git checkout -b feature/AmazingFeature`)
+3. Commit your changes (`git commit -m 'Add some AmazingFeature'`)
+4. Push to the branch (`git push origin feature/AmazingFeature`)
+5. Open a Pull Request
+
+### Contribution Guidelines
+
+- Write clear, descriptive commit messages
+- Follow the existing code style
+- Include tests for new features
+- Update documentation as needed
+- Create issues for major changes
+
+## 📄 License
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+
+## 🙏 Acknowledgments
+
+- [Next.js](https://nextjs.org/) - The React Framework
+- [MongoDB](https://www.mongodb.com/) - Database
+- [NextAuth.js](https://next-auth.js.org/) - Authentication
+
+## 📞 Support
+
+For support, please open an issue in the GitHub repository or contact the team at mohit.work2002@gmail.com.
