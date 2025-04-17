@@ -9,7 +9,7 @@ export default function AuthSuccess() {
 
     useEffect(() => {
         if (status === 'authenticated' && session) {
-            const extensionId = `fahhijlogchblpjijfecepmmobadfaol`;
+            const extensionId = `klmmgbmpeabaapnkdjkjhjohbkodnbjm`;
             const data = {
                 'user-id': session.user.id,
                 'access-token': session.user.accessToken,
