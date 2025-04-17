@@ -7,7 +7,7 @@ export async function middleware(request) {
         return new NextResponse(null, {
             status: 200,
             headers: {
-                'Access-Control-Allow-Origin': 'chrome-extension://fahhijlogchblpjijfecepmmobadfaol',
+                'Access-Control-Allow-Origin': 'chrome-extension://klmmgbmpeabaapnkdjkjhjohbkodnbjm',
                 'Access-Control-Allow-Methods': 'GET, POST, PUT, DELETE, OPTIONS',
                 'Access-Control-Allow-Headers': 'Content-Type, Authorization, user-id',
                 'Access-Control-Max-Age': '86400',
@@ -18,7 +18,7 @@ export async function middleware(request) {
     const response = NextResponse.next();
 
     // Add CORS headers to all responses
-    response.headers.set('Access-Control-Allow-Origin', 'chrome-extension://fahhijlogchblpjijfecepmmobadfaol');
+    response.headers.set('Access-Control-Allow-Origin', 'chrome-extension://klmmgbmpeabaapnkdjkjhjohbkodnbjm');
     response.headers.set('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, OPTIONS');
     response.headers.set('Access-Control-Allow-Headers', 'Content-Type, Authorization, user-id');
 
